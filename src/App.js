@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Evden from "./Evden";
+import Main from "./Main";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {Array.from({ length: 50 }, (_, i) => (
+          <Route
+            key={`evden-${i}`}
+            path={`/evden-eve-nakliyat-ankara-${i + 1}`}
+            element={<Evden />}
+          />
+        ))}
+        {Array.from({ length: 50 }, (_, i) => (
+          <Route
+            key={`main-${i}`}
+            path={`/ankara-evden-eve-nakliyat-${i + 1}`}
+            element={<Main />}
+          />
+        ))}
+        <Route path="/" element={<Main />} />
+      </Routes>
+    </Router>
   );
 }
 
